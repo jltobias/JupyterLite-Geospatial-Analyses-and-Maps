@@ -1,0 +1,7 @@
+jupyterlite-core
+jupyterlite-pyodide-kernel
+notebook
+pandas
+numpy
+matplotlib
+pyshp
