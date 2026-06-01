@@ -19,28 +19,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install JupyterLite
+
+      - name: Install JupyterLite build tools
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
-      - name: Stage content for browser filesystem
+
+      - name: Stage JupyterLite content without flattening notebooks
         run: |
           rm -rf lite-content dist
           mkdir -p lite-content
-          cp -R notebooks/* lite-content/
+          cp -R notebooks lite-content/
           cp -R data shapefiles geopackages images videos lite-content/
           cp spatial_lite.py lite-content/
           cp README.md lite-content/
+          cp jupyter_lite_config.json lite-content/
+          # Ensure notebooks can import spatial_lite when opened from files/notebooks/.
+          cp spatial_lite.py lite-content/notebooks/spatial_lite.py
+
       - name: Build JupyterLite site
         run: |
           jupyter lite build --contents lite-content --output-dir dist
+          touch dist/.nojekyll
+
       - uses: actions/configure-pages@v5
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+
   deploy:
     environment:
       name: github-pages
