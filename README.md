@@ -1,6 +1,8 @@
 # JupyterLite Geospatial Analyses and Maps
 
-A browser-ready, map-first teaching repository for the Periodic Table of Geospatial Analysis.
+A browser-ready, map-first teaching repository for the Periodic Table of Geospatial Analysis:  https://gisgeography.com/spatial-analysis-periodic-table/ 
+
+Citation:  https://gisgeography.com/how-to-cite/    GIS Geography.com:  https://gisgeography.com/about-us/ 
 
 ## What changed
 
